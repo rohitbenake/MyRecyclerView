@@ -44,8 +44,11 @@ class Codechef
          System.out.println("Tokens :: "+b);
         if (b.startsWith("You have sent") ||  (b.startsWith("Airtime") || (b.startsWith("You have received")))){
             String type = getType(b);
+            System.out.println("Type :: "+type);
             String parsed = parseAmount(b);
+            System.out.println("Amount :: "+parsed);
             String number = parseNumber(b);
+            System.out.println("number :: "+number);
             ret.put("amount", parsed);
             ret.put("number", number);
             ret.put("type", type);
@@ -82,6 +85,7 @@ private static String parseAmount(String s){
     StringBuffer sb = new StringBuffer();
     boolean parsingNumber = false;
     for (char c: arr){
+        System.out.println("char :: "+c+" bool"+parsingNumber);
         if (Character.isDigit(c))
             parsingNumber = true;
         if (Character.isLetter(c)  && c != ',' )
