@@ -1,0 +1,57 @@
+#include <vector>
+
+#include "tbb/tbb.h"
+
+using namespace std;
+
+tbb::concurrent_vector<int> my_list;
+
+void add_element(int i) {
+
+    my_list.push_back(i);
+
+}
+
+
+int main() {
+    const int size = 100000;
+      
+    tbb::parallel_for(0,size,1, [=](int i) {
+
+       add_element(i);
+            
+   } );
+
+    return 0;
+}
+
+/*
+Useful Links
+http://www.randomprogramming.com/2014/08/stdvector-vs-tbbconcurrent_vector-api-design/
+
+https://software.intel.com/en-us/forums/intel-threading-building-blocks/topic/302970
+
+https://goparallel.sourceforge.net/compiling-tbb-programs-and-examples-on-linux-ubuntu/
+
+
+http://stackoverflow.com/questions/4989451/mutex-example-tutorial
+
+pthread 
+https://computing.llnl.gov/tutorials/pthreads/
+
+Phone example 
+http://nrecursions.blogspot.in/2014/08/mutex-tutorial-and-example.html?m=1
+
+TBB scoped_lock
+https://software.intel.com/en-us/node/608142
+https://goparallel.sourceforge.net/acquiring-mutexes-in-c/
+
+
+Atomic
+http://stackoverflow.com/questions/14011849/lock-free-multithreaded-programming/14011948#14011948
+
+Mutex flavors 
+https://www.threadingbuildingblocks.org/docs/help/tbb_userguide/Mutex_Flavors.html
+
+
+*/
